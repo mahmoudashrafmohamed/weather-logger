@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-
+/**
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
 
             LocationApi(
@@ -39,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
 
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-        }
+        }*/
     }
 
 
