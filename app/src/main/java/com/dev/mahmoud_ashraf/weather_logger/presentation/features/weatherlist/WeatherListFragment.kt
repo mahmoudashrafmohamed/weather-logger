@@ -1,5 +1,6 @@
 package com.dev.mahmoud_ashraf.weather_logger.presentation.features.weatherlist
 
+import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.dev.mahmoud_ashraf.weather_logger.R
 import com.dev.mahmoud_ashraf.weather_logger.databinding.FragmentWeatherListBinding
+import com.dev.mahmoud_ashraf.weather_logger.presentation.core.LocationApi
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 
 class WeatherListFragment : Fragment() {
@@ -31,8 +35,8 @@ class WeatherListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        initUI()
         setUpVenuesRecycler()
-        initListener()
         viewModel.weatherListLiveData.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
@@ -40,9 +44,26 @@ class WeatherListFragment : Fragment() {
 
     }
 
-    private fun initListener() {
-        binding.fab.setOnClickListener {
-            viewModel.refresh()
+    private fun initUI() {
+       binding.fab.setOnClickListener { view ->
+
+            LocationApi(
+                requireActivity(),
+                callbacks = object :
+                    LocationApi.Callbacks {
+                    override fun onSuccess(location: Location) {
+                        Timber.e("done " + location.latitude)
+                        viewModel.refresh(location.latitude, location.longitude)
+                        Snackbar.make(view, "Location Detected please wait...", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
+                    }
+
+                    override fun onFailed(locationFailedEnum: LocationApi.LocationFailedEnum) {
+                        Timber.e("error " + locationFailedEnum.name)
+                    }
+
+                })
+
         }
     }
 
@@ -50,12 +71,7 @@ class WeatherListFragment : Fragment() {
 
         binding.weatherRecycler.adapter = adapter
         binding.weatherRecycler.itemAnimator = null
-        adapter.onItemClicked = { _, data ->
-//            findNavController().navigate(R.id.action_homeFragment_to_detailsFragment,
-//                Bundle().also {
-//                    it.putParcelable(ARGS_ACTOR,actor)
-//                })
-        }
+        adapter.onItemClicked = { _, _ -> }
 
    
     }

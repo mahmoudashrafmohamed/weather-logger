@@ -18,28 +18,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-
-
-/**
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-
-            LocationApi(
-                this,
-                callbacks = object :
-                    LocationApi.Callbacks {
-                    override fun onSuccess(location: Location) {
-                        Timber.e("done " + location.latitude)
-                    }
-
-                    override fun onFailed(locationFailedEnum: LocationApi.LocationFailedEnum) {
-                        Timber.e("error " + locationFailedEnum.name)
-                    }
-
-                })
-
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }*/
     }
 
 

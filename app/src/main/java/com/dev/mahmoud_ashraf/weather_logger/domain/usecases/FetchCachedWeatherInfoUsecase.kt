@@ -7,13 +7,8 @@ import java.util.*
 
 
 fun fetchCachedWeatherInfo(
-    lat: String?,
-    lng: String?,
     weatherInfoRepository: WeatherInfoRepository
 ): Single<List<WeatherEntity>> {
     return weatherInfoRepository
-        .takeIf { lat!=null && lng!=null }
-        ?.getLocalWeatherData()
-        ?: Single.error(Exception())
-
+        .getLocalWeatherData()
 }

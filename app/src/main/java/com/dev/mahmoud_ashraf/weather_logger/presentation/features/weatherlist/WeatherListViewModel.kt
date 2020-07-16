@@ -1,6 +1,5 @@
 package com.dev.mahmoud_ashraf.weather_logger.presentation.features.weatherlist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +22,7 @@ class WeatherListViewModel(private val weatherInfoRepository: WeatherInfoReposit
         get() = _weatherListLiveData
 
     init {
-        fetchCachedWeatherInfo("30.033333","31.233334",weatherInfoRepository)
+        fetchCachedWeatherInfo(weatherInfoRepository)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -39,8 +38,8 @@ class WeatherListViewModel(private val weatherInfoRepository: WeatherInfoReposit
     }
 
 
-    fun refresh(){
-        fetchWeatherInfo("30.033333","31.233334",weatherInfoRepository)
+    fun refresh(latitude: Double?, longitude: Double?) {
+        fetchWeatherInfo(latitude?.toString(),longitude?.toString(),weatherInfoRepository)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
