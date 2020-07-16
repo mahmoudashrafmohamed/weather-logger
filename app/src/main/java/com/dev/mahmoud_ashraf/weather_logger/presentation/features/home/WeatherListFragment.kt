@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.dev.mahmoud_ashraf.weather_logger.R
+import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class FirstFragment : Fragment() {
+
+class WeatherListFragment : Fragment() {
+
+    private val viewModel by viewModel<WeatherListViewModel>()
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -24,9 +28,11 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button_first).setOnClickListener {
+        viewModel.call()
+      /*  view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
+        }*/
+
+
     }
 }

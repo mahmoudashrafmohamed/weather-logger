@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.dev.mahmoud_ashraf.weather_logger.presentation.features.home.FirstFragment"
+        android:name="com.dev.mahmoud_ashraf.weather_logger.presentation.features.home.WeatherListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
