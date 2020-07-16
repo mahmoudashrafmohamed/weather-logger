@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.dev.mahmoud_ashraf.weather_logger.R
-import com.dev.mahmoud_ashraf.weather_logger.presentation.features.core.LocationApi
+import com.dev.mahmoud_ashraf.weather_logger.presentation.core.LocationApi
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
         setSupportActionBar(findViewById(R.id.toolbar))
 
 
@@ -23,16 +23,19 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
 
-            LocationApi(this,callbacks = object :LocationApi.Callbacks{
-                override fun onSuccess(location: Location) {
-                    Timber.e("done "+location.latitude)
-                }
+            LocationApi(
+                this,
+                callbacks = object :
+                    LocationApi.Callbacks {
+                    override fun onSuccess(location: Location) {
+                        Timber.e("done " + location.latitude)
+                    }
 
-                override fun onFailed(locationFailedEnum: LocationApi.LocationFailedEnum) {
-                    Timber.e(locationFailedEnum.name)
-                }
+                    override fun onFailed(locationFailedEnum: LocationApi.LocationFailedEnum) {
+                        Timber.e("error " + locationFailedEnum.name)
+                    }
 
-            })
+                })
 
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
