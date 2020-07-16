@@ -1,4 +1,4 @@
-package com.dev.mahmoud_ashraf.weather_logger
+package com.dev.mahmoud_ashraf.weather_logger.presentation.features.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.dev.mahmoud_ashraf.weather_logger.R
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

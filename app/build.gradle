@@ -100,6 +100,10 @@ dependencies {
     // Rx permissions
     implementation 'com.github.tbruyelle:rxpermissions:0.11'
 
+    // location
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+
 
     // testing
     testImplementation 'junit:junit:4.13'
